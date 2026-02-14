@@ -289,10 +289,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (submitFormBtn) {
         submitFormBtn.addEventListener('click', async function() {
             // 获取表单数据
-            const gameId = document.getElementById('gameId').value.trim();
-            const contact = document.getElementById('contact').value.trim();
-            const reason = document.getElementById('reason').value.trim();
-            const experience = document.getElementById('experience').value.trim();
+            const gameId = (document.getElementById('gameId')?.value || '').trim();
+            const contact = (document.getElementById('contact')?.value || '').trim();
+            const reason = (document.getElementById('reason')?.value || '').trim();
+            const experience = (document.getElementById('experience')?.value || '').trim();
             
             // 验证必填字段
             if (!gameId || !contact || !reason || !experience) {
@@ -339,10 +339,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     formStatus.className = 'form-status success';
                     
                     // 清空表单
-                    document.getElementById('gameId').value = '';
-                    document.getElementById('contact').value = '';
-                    document.getElementById('reason').value = '';
-                    document.getElementById('experience').value = '';
+                    document.getElementById('gameId')?.value = '';
+                    document.getElementById('contact')?.value = '';
+                    document.getElementById('reason')?.value = '';
+                    document.getElementById('experience')?.value = '';
                 } else {
                     throw new Error('提交失败，请稍后重试');
                 }
