@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 // 触发 GitHub Actions workflow
                 // 注意：这里需要替换为你的 GitHub 用户名和仓库名
-                const response = await fetch('https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/dispatches', {
+                const response = await fetch('https://api.github.com/repos/banana-1423/heixu_wed/dispatches', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
