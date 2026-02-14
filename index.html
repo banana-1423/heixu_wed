@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑序公会 - 我的世界</title>
+    <link rel="stylesheet" href="c.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111'/><rect x='25' y='25' width='50' height='50' fill='%23333'/><rect x='35' y='35' width='30' height='30' fill='%23555'/><rect x='45' y='45' width='10' height='10' fill='%23777'/></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚫</span>
+                <span class="logo-text">黑序公会</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link">首页</a>
+                <a href="#about" class="nav-link">公会介绍</a>
+                <a href="#features" class="nav-link">特色功能</a>
+                <a href="#members" class="nav-link">成员展示</a>
+                <a href="#contact" class="nav-link">加入我们</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">黑序公会</h1>
+            <p class="hero-subtitle">在黑暗中崛起，书写属于我们的秩序</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn primary-btn">加入公会</a>
+                <a href="#about" class="btn secondary-btn">了解更多</a>
+            </div>
+        </div>
+        <div class="hero-bg">
+            <!-- 小球背景 -->
+            <canvas id="moving-balls" class="moving-balls-background"></canvas>
+        </div>
+    </section>
+
+    <!-- 公会介绍 -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">公会介绍</h2>
+            <div class="about-content">
+                <div class="about-card glass-card">
+                    <h3>公会理念</h3>
+                    <p>黑序公会是一个专注于我的世界的精英玩家团体。我们致力于在游戏中建立自己的秩序，探索未知的领域，挑战极限，创造属于我们的传奇故事。</p>
+                </div>
+                <div class="about-card glass-card">
+                    <h3>公会历史</h3>
+                    <p>成立于2025/11/1，黑序公会由PVP大佬sun_bored创建，是一个由9名志同道合的玩家组成的小型公会。虽然规模不大，但我们拥有深厚的友谊和共同的游戏目标。</p>
+                </div>
+                <div class="about-card glass-card">
+                    <h3>公会目标</h3>
+                    <p>我们追求卓越，不断挑战自我。无论是生存模式的极限挑战，还是创造模式的建筑设计，我们都在努力学习，共同进步。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色功能 -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">特色功能</h2>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🏰</div>
+                    <h3>专属领地</h3>
+                    <p>公会拥有广阔的专属领地，成员可以在这里自由建造、发展，享受安全的游戏环境。</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>团队作战</h3>
+                    <p>定期组织PVP活动、副本挑战等团队活动，提升成员之间的配合与实力。</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>资源共享</h3>
+                    <p>建立完善的资源共享系统，帮助新成员快速成长，共同发展壮大。</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>多端支持</h3>
+                    <p>支持Java版和基岩版互通，无论你使用什么设备，都能加入我们的行列。</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📢</div>
+                    <h3>活跃社区</h3>
+                    <p>拥有活跃的社区氛围，定期举办线上线下活动，增进成员之间的友谊。</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>赛事参与</h3>
+                    <p>积极参与各类我的世界赛事，展示公会实力，赢得荣誉与奖励。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成员展示 -->
+    <section id="members" class="members">
+        <div class="container">
+            <h2 class="section-title">核心成员</h2>
+            <div class="members-grid">
+                <div class="member-card glass-card">
+                    <div class="member-avatar">👑</div>
+                    <h3>sun_bored</h3>
+                    <p class="member-role">公会创始人</p>
+                    <p class="member-desc">黑序公会创建者，PVP大佬，拥有高超的战斗技巧和丰富的游戏经验。</p>
+                </div>
+                <div class="member-card glass-card">
+                    <div class="member-avatar">🏗️</div>
+                    <h3>Aero_Flare</h3>
+                    <p class="member-role">建造与管理</p>
+                    <p class="member-desc">负责公会的建筑设计和日常管理，正在学习创造更好的建筑群。</p>
+                </div>
+                <div class="member-card glass-card">
+                    <div class="member-avatar">🖥️</div>
+                    <h3>emperor_Yyue</h3>
+                    <p class="member-role">服主</p>
+                    <p class="member-desc">我们的服主，负责服务器的维护和管理，确保游戏环境的稳定运行。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">加入我们</h2>
+            <div class="contact-content">
+                <div class="contact-info glass-card">
+                    <h3>联系方式</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">👥</span>
+                        <span class="contact-text">QQ群: 1031837671</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span class="contact-text">邮箱: 3874945102@qq.com</span>
+                    </div>
+                </div>
+                <div class="contact-form glass-card">
+                    <h3>申请加入</h3>
+                    <form id="joinForm" class="join-form">
+                        <div class="form-group">
+                            <label for="gameId">游戏ID *</label>
+                            <input type="text" id="gameId" required placeholder="请输入您的游戏ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">联系方式 *</label>
+                            <input type="text" id="contact" required placeholder="QQ/微信/手机号">
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">加入理由 *</label>
+                            <textarea id="reason" required placeholder="请说明您想加入公会的原因"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">游戏经验 *</label>
+                            <textarea id="experience" required placeholder="请描述您的游戏经验"></textarea>
+                        </div>
+                        <button type="button" id="submitFormBtn" class="btn primary-btn submit-btn">提交申请</button>
+                        <div id="formStatus" class="form-status"></div>
+                        <!-- GitHub Actions 配置说明 -->
+                        <div class="github-actions-note">
+                            <p><strong>重要配置：</strong>上传到GitHub后，需要在仓库设置中添加以下Secrets：</p>
+                            <ul>
+                                <li><code>QQ_EMAIL</code>: <code>3874945102@qq.com</code></li>
+                                <li><code>QQ_APP_PASSWORD</code>: <em>你的QQ邮箱授权码</em></li>
+                            </ul>
+                            <p><strong>获取QQ授权码：</strong>登录QQ邮箱 → 设置 → 账户 → 开启SMTP服务 → 按照提示获取授权码</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">⚫</span>
+                    <span class="logo-text">黑序公会</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home" class="footer-link">首页</a>
+                    <a href="#about" class="footer-link">公会介绍</a>
+                    <a href="#features" class="footer-link">特色功能</a>
+                    <a href="#members" class="footer-link">成员展示</a>
+                    <a href="#contact" class="footer-link">加入我们</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">QQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 黑序公会. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
