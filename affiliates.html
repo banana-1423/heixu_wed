@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>附属公会 - 黑序公会</title>
+    <link rel="stylesheet" href="c.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111'/><rect x='25' y='25' width='50' height='50' fill='%23333'/><rect x='35' y='35' width='30' height='30' fill='%23555'/><rect x='45' y='45' width='10' height='10' fill='%23777'/></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚫</span>
+                <span class="logo-text">黑序公会</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="index.html#about" class="nav-link">公会介绍</a>
+                <a href="index.html#features" class="nav-link">特色功能</a>
+                <a href="index.html#members" class="nav-link">成员展示</a>
+                <a href="index.html#contact" class="nav-link">加入我们</a>
+                <a href="affiliates.html" class="nav-link active">附属公会</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">附属公会</h1>
+            <p class="hero-subtitle">黑序公会的合作伙伴</p>
+            <div class="hero-buttons">
+                <a href="index.html" class="btn secondary-btn">返回首页</a>
+            </div>
+        </div>
+        <div class="hero-bg">
+            <!-- 小球背景 -->
+            <canvas id="moving-balls" class="moving-balls-background"></canvas>
+        </div>
+    </section>
+
+    <!-- 附属公会列表 -->
+    <section class="affiliates">
+        <div class="container">
+            <h2 class="section-title">附属公会</h2>
+            <div class="affiliates-grid">
+                <!-- MINE 公会 -->
+                <div class="affiliate-card glass-card">
+                    <div class="affiliate-header">
+                        <h3 class="affiliate-name">MINE</h3>
+                        <div class="affiliate-badge">正常</div>
+                    </div>
+                    <div class="affiliate-info">
+                        <div class="info-item">
+                            <span class="info-label">成员数量:</span>
+                            <span class="info-value">0 (不包括创始人)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">创始人 QQ:</span>
+                            <span class="info-value">光</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">JE:</span>
+                            <span class="info-value">minecuavtFarce</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">BE:</span>
+                            <span class="info-value">MineCuavtFarce</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">CE:</span>
+                            <span class="info-value">MineCuavtFarce</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 预留其他附属公会位置 -->
+                <div class="affiliate-card glass-card empty-card">
+                    <div class="empty-card-content">
+                        <div class="empty-icon">✨</div>
+                        <h3>敬请期待</h3>
+                        <p>更多附属公会即将加入</p>
+                    </div>
+                </div>
+                
+                <div class="affiliate-card glass-card empty-card">
+                    <div class="empty-card-content">
+                        <div class="empty-icon">✨</div>
+                        <h3>敬请期待</h3>
+                        <p>更多附属公会即将加入</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">⚫</span>
+                    <span class="logo-text">黑序公会</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">首页</a>
+                    <a href="index.html#about" class="footer-link">公会介绍</a>
+                    <a href="index.html#features" class="footer-link">特色功能</a>
+                    <a href="index.html#members" class="footer-link">成员展示</a>
+                    <a href="index.html#contact" class="footer-link">加入我们</a>
+                    <a href="affiliates.html" class="footer-link">附属公会</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">QQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 黑序公会. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
