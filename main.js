@@ -316,27 +316,27 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 获取表单数据
             console.log('获取表单数据...');
-            const gameIdElement = document.getElementById('gameId');
-            const contactElement = document.getElementById('userEmail');
-            const reasonElement = document.getElementById('reason');
-            const experienceElement = document.getElementById('experience');
+            var gameIdElement = document.getElementById('gameId');
+            var contactElement = document.getElementById('userEmail');
+            var reasonElement = document.getElementById('reason');
+            var experienceElement = document.getElementById('experience');
             
             console.log('表单元素:', { gameIdElement, contactElement, reasonElement, experienceElement });
             
-            const gameId = (gameIdElement?.value || '').trim();
-            const contact = (contactElement?.value || '').trim();
-            const reason = (reasonElement?.value || '').trim();
-            const experience = (experienceElement?.value || '').trim();
+            var gameId = (gameIdElement && gameIdElement.value ? gameIdElement.value : '').trim();
+            var contact = (contactElement && contactElement.value ? contactElement.value : '').trim();
+            var reason = (reasonElement && reasonElement.value ? reasonElement.value : '').trim();
+            var experience = (experienceElement && experienceElement.value ? experienceElement.value : '').trim();
             
             console.log('表单数据:', { gameId, contact, reason, experience });
             
             // 验证邮箱格式
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (contact && !emailRegex.test(contact)) {
                 console.log('邮箱格式不正确:', contact);
                 formStatus.innerHTML = '<div class="error-message">❌ 请输入有效的微软邮箱地址</div>';
                 formStatus.className = 'form-status error';
-                setTimeout(() => {
+                setTimeout(function() {
                     formStatus.innerHTML = '';
                     formStatus.className = 'form-status';
                 }, 5000);
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('验证失败：必填字段为空');
                 formStatus.innerHTML = '<div class="error-message">❌ 请填写所有必填字段</div>';
                 formStatus.className = 'form-status error';
-                setTimeout(() => {
+                setTimeout(function() {
                     formStatus.innerHTML = '';
                     formStatus.className = 'form-status';
                 }, 5000);
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // 生成隐藏的验证通盘
-            const verificationCode = generateVerificationCode();
+            var verificationCode = generateVerificationCode();
             console.log('生成的验证通盘:', verificationCode);
             
             // 禁用按钮
@@ -366,43 +366,43 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                 console.log('开始发送邮件...');
-                console.log('配置信息:', { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
+                console.log('配置信息:', { SERVICE_ID: SERVICE_ID, TEMPLATE_ID: TEMPLATE_ID, PUBLIC_KEY: PUBLIC_KEY });
                 
                 // 发送邮件
-                const emailData = {
+                var emailData = {
                     user_name: gameId,
                     user_email: contact,
-                    user_message: `加入理由: ${reason}\n游戏经验: ${experience}\n验证通盘: ${verificationCode}`,
+                    user_message: '加入理由: ' + reason + '\n游戏经验: ' + experience + '\n验证通盘: ' + verificationCode,
                     '名称': gameId,
                     '电子邮件': contact
                 };
                 console.log('邮件数据:', emailData);
                 
                 emailjs.send(SERVICE_ID, TEMPLATE_ID, emailData)
-                .then((response) => {
+                .then(function(response) {
                     console.log('发送成功:', response);
                     // 显示成功消息
                     formStatus.innerHTML = '<div class="success-message">✅ 申请提交成功！我们会在72小时内回复您。</div>';
                     formStatus.className = 'form-status success';
                     
                     // 清空表单
-                    const gameIdInput = document.getElementById('gameId');
+                    var gameIdInput = document.getElementById('gameId');
                     if (gameIdInput) gameIdInput.value = '';
-                    const contactInput = document.getElementById('contact');
+                    var contactInput = document.getElementById('userEmail');
                     if (contactInput) contactInput.value = '';
-                    const reasonInput = document.getElementById('reason');
+                    var reasonInput = document.getElementById('reason');
                     if (reasonInput) reasonInput.value = '';
-                    const experienceInput = document.getElementById('experience');
+                    var experienceInput = document.getElementById('experience');
                     if (experienceInput) experienceInput.value = '';
                 })
-                .catch((error) => {
+                .catch(function(error) {
                     console.error('发送失败:', error);
                     formStatus.innerHTML = '<div class="error-message">❌ 发送失败，请稍后重试：' + (error.text || error.message || '未知错误') + '</div>';
                     formStatus.className = 'form-status error';
                 })
-                .finally(() => {
+                .finally(function() {
                     // 恢复按钮
-                    setTimeout(() => {
+                    setTimeout(function() {
                         submitFormBtn.disabled = false;
                         submitFormBtn.textContent = '提交申请';
                         formStatus.innerHTML = '';
