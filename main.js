@@ -271,10 +271,27 @@ document.addEventListener('DOMContentLoaded', function() {
     initMovingBalls();
 });
 
-// 表单处理（GitHub Actions）
+// 表单处理（EmailJS）
 document.addEventListener('DOMContentLoaded', function() {
     const submitFormBtn = document.getElementById('submitFormBtn');
     const formStatus = document.getElementById('formStatus');
+    
+    const PUBLIC_KEY = "tpovpYwco6w7VvU5u";
+    const SERVICE_ID = "service_ooyqmjb";
+    const TEMPLATE_ID = "template_boc7sy5";
+
+    // 初始化EmailJS
+    console.log('初始化EmailJS...');
+    if (typeof emailjs !== 'undefined') {
+        try {
+            emailjs.init(PUBLIC_KEY);
+            console.log('EmailJS初始化成功');
+        } catch (initError) {
+            console.error('EmailJS初始化失败:', initError);
+        }
+    } else {
+        console.error('EmailJS SDK未加载');
+    }
     
     // 生成随机验证通盘
     function generateVerificationCode() {
@@ -286,16 +303,49 @@ document.addEventListener('DOMContentLoaded', function() {
         return code;
     }
     
+    console.log('表单处理初始化...');
+    console.log('submitFormBtn:', submitFormBtn);
+    console.log('formStatus:', formStatus);
+    console.log('emailjs available:', typeof emailjs !== 'undefined');
+    
     if (submitFormBtn) {
-        submitFormBtn.addEventListener('click', async function() {
+        console.log('绑定点击事件...');
+        submitFormBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('按钮被点击了！');
+            
             // 获取表单数据
-            const gameId = (document.getElementById('gameId')?.value || '').trim();
-            const contact = (document.getElementById('contact')?.value || '').trim();
-            const reason = (document.getElementById('reason')?.value || '').trim();
-            const experience = (document.getElementById('experience')?.value || '').trim();
+            console.log('获取表单数据...');
+            const gameIdElement = document.getElementById('gameId');
+            const contactElement = document.getElementById('userEmail');
+            const reasonElement = document.getElementById('reason');
+            const experienceElement = document.getElementById('experience');
+            
+            console.log('表单元素:', { gameIdElement, contactElement, reasonElement, experienceElement });
+            
+            const gameId = (gameIdElement?.value || '').trim();
+            const contact = (contactElement?.value || '').trim();
+            const reason = (reasonElement?.value || '').trim();
+            const experience = (experienceElement?.value || '').trim();
+            
+            console.log('表单数据:', { gameId, contact, reason, experience });
+            
+            // 验证邮箱格式
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (contact && !emailRegex.test(contact)) {
+                console.log('邮箱格式不正确:', contact);
+                formStatus.innerHTML = '<div class="error-message">❌ 请输入有效的微软邮箱地址</div>';
+                formStatus.className = 'form-status error';
+                setTimeout(() => {
+                    formStatus.innerHTML = '';
+                    formStatus.className = 'form-status';
+                }, 5000);
+                return;
+            }
             
             // 验证必填字段
             if (!gameId || !contact || !reason || !experience) {
+                console.log('验证失败：必填字段为空');
                 formStatus.innerHTML = '<div class="error-message">❌ 请填写所有必填字段</div>';
                 formStatus.className = 'form-status error';
                 setTimeout(() => {
@@ -307,57 +357,74 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 生成隐藏的验证通盘
             const verificationCode = generateVerificationCode();
+            console.log('生成的验证通盘:', verificationCode);
             
             // 禁用按钮
             submitFormBtn.disabled = true;
             submitFormBtn.textContent = '提交中...';
+            console.log('按钮已禁用，开始发送邮件');
             
             try {
-                // 触发 GitHub Actions workflow
-                // 注意：这里需要替换为你的 GitHub 用户名和仓库名
-                const response = await fetch('https://api.github.com/repos/banana-1423/heixu_wed/dispatches', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify({
-                        event_type: 'form_submission',
-                        client_payload: {
-                            gameId: gameId,
-                            contact: contact,
-                            reason: reason,
-                            experience: experience,
-                            verificationCode: verificationCode
-                        }
-                    })
-                });
+                console.log('开始发送邮件...');
+                console.log('配置信息:', { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
                 
-                if (response.ok) {
+                // 发送邮件
+                const emailData = {
+                    user_name: gameId,
+                    user_email: contact,
+                    user_message: `加入理由: ${reason}\n游戏经验: ${experience}\n验证通盘: ${verificationCode}`,
+                    '名称': gameId,
+                    '电子邮件': contact
+                };
+                console.log('邮件数据:', emailData);
+                
+                emailjs.send(SERVICE_ID, TEMPLATE_ID, emailData)
+                .then((response) => {
+                    console.log('发送成功:', response);
                     // 显示成功消息
-                    formStatus.innerHTML = '<div class="success-message">✅ 申请提交成功！我们会在24小时内回复您。</div>';
+                    formStatus.innerHTML = '<div class="success-message">✅ 申请提交成功！我们会在72小时内回复您。</div>';
                     formStatus.className = 'form-status success';
                     
                     // 清空表单
-                    document.getElementById('gameId')?.value = '';
-                    document.getElementById('contact')?.value = '';
-                    document.getElementById('reason')?.value = '';
-                    document.getElementById('experience')?.value = '';
-                } else {
-                    throw new Error('提交失败，请稍后重试');
-                }
+                    const gameIdInput = document.getElementById('gameId');
+                    if (gameIdInput) gameIdInput.value = '';
+                    const contactInput = document.getElementById('contact');
+                    if (contactInput) contactInput.value = '';
+                    const reasonInput = document.getElementById('reason');
+                    if (reasonInput) reasonInput.value = '';
+                    const experienceInput = document.getElementById('experience');
+                    if (experienceInput) experienceInput.value = '';
+                })
+                .catch((error) => {
+                    console.error('发送失败:', error);
+                    formStatus.innerHTML = '<div class="error-message">❌ 发送失败，请稍后重试：' + (error.text || error.message || '未知错误') + '</div>';
+                    formStatus.className = 'form-status error';
+                })
+                .finally(() => {
+                    // 恢复按钮
+                    setTimeout(() => {
+                        submitFormBtn.disabled = false;
+                        submitFormBtn.textContent = '提交申请';
+                        formStatus.innerHTML = '';
+                        formStatus.className = 'form-status';
+                        console.log('按钮已恢复');
+                    }, 5000);
+                });
             } catch (error) {
-                formStatus.innerHTML = '<div class="error-message">❌ ' + error.message + '</div>';
+                console.error('捕获到错误:', error);
+                formStatus.innerHTML = '<div class="error-message">❌ 发送失败，请稍后重试：' + error.message + '</div>';
                 formStatus.className = 'form-status error';
-            } finally {
                 // 恢复按钮
                 setTimeout(() => {
                     submitFormBtn.disabled = false;
                     submitFormBtn.textContent = '提交申请';
                     formStatus.innerHTML = '';
                     formStatus.className = 'form-status';
+                    console.log('按钮已恢复（错误情况下）');
                 }, 5000);
             }
         });
+    } else {
+        console.error('submitFormBtn 不存在！');
     }
 });
